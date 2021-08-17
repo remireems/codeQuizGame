@@ -1,3 +1,26 @@
+const startBtn = document.getElementById('startBtn')
+const rulesBox = document.getElementById('rulesBox')
+const continueBtn = document.getElementById('continueBtn')
+const quizBox = document.getElementById('quizBox')
+
+
+document.getElementById('startBtn').addEventListener('click', event => {
+  event.preventDefault()
+
+  event.target.parentNode.remove()
+  rulesBox.className = 'rulesBox showRules'
+
+})
+
+document.getElementById('continueBtn').addEventListener('click', event => {
+  event.target.parentNode.parentNode.remove()
+  quizBox.className = 'quizBox showQuiz'
+
+  // showQue()
+  // queCount()
+  // startTimer()
+})
+
 // add more code Qs later
 const questions = [
   {
