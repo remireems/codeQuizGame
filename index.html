@@ -42,31 +42,31 @@
     <header>
       <div class="quizTitle">Fun Code Quiz</div>
       <div class="timer">
-        <div class="timerTime">Time</div>
-        <div class="timerSecs">60</div>
+        <div class="timerTime" id="timerTime">Time</div>
+        <div class="timerSecs" id="timerSecs">60</div>
       </div>
     </header>
     <section>
-      <div class="quizQue"></div>
-      <div class="quizOpt"></div>
+      <div class="quizQue" id="quizQue"></div>
+      <div class="quizOpt" id="quizOpt"></div>
     </section>
     <footer>
-      <div class="quizTotal"></div>
+      <div class="quizTotal" id="quizTotal"></div>
     </footer>
   </div>
 
-  <!-- <div class="resultBox">
+  <!-- <div class="resultBox" id="resultBox">
     <h1>You've completed the quiz!</h1>
-    <div class="resultScore"></div>
+    <div class="resultScore" id="resultScore"></div>
     <div class="resultBtns">
       <button type="button" class="btn btn-outline-primary btn-lg" id="recordScoreBtn">Record Score</button>
       <button type="button" class="btn btn-outline-primary btn-lg" id="retakeBtn">Retake Quiz</button>
     </div>
-  </div> -->
+  </div>
 
-  <!-- <div class="recordBox">
+  <div class="recordBox" id="recordBox">
     <h1>Record your score!</h1>
-    <div class="recordResults"></div>
+    <div class="recordResults" id="recordResults"></div>
 
     <form>
 
@@ -80,9 +80,9 @@
       </div>
 
     </form>
-  </div> -->
+  </div>
 
-  <!-- <div class="highscoresBox">
+  <div class="highscoresBox">
     <h1>Highscores</h1>
     <div class="highscoreResults"></div>
     <div class="buttons">
@@ -94,6 +94,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
     crossorigin="anonymous"></script>
+  <script src="./questions.js"></script>
   <script src="./script.js"></script>
 </body>
 

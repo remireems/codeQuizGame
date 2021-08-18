@@ -1,59 +1,90 @@
 const startBtn = document.getElementById('startBtn')
-const rulesBox = document.getElementById('rulesBox')
+
 const continueBtn = document.getElementById('continueBtn')
-const quizBox = document.getElementById('quizBox')
 
+const resultBox = document.getElementById('resultBox')
+const quizOpt = document.getElementById('quizOpt')
+const timerTime = document.getElementById('timerTime')
+const timerSecs = document.getElementById('timerSecs')
 
+// When start quiz btn is clicked
 document.getElementById('startBtn').addEventListener('click', event => {
-  event.preventDefault()
-
   event.target.parentNode.remove()
-  rulesBox.className = 'rulesBox showRules'
 
+  const rulesBox = document.getElementById('rulesBox')
+  rulesBox.className = 'rulesBox showRules'
 })
 
+// When continue btn is clicked
 document.getElementById('continueBtn').addEventListener('click', event => {
   event.target.parentNode.parentNode.remove()
+
+  const quizBox = document.getElementById('quizBox')
   quizBox.className = 'quizBox showQuiz'
 
-  // showQue()
-  // queCount()
+  showQue(0)
+  // queCounter()
   // startTimer()
 })
 
-// add more code Qs later
-const questions = [
-  {
-    num: 1,
-    question: 'What does HTML stand for?',
-    answer: 'Hyper Text Markup Language',
-    options: [
-      'Hyper Text Preprocessor',
-      'Hyper Text Markup Language',
-      'Hyper Text Multiple Language',
-      'Hyper Tool Multi Language'
-    ]
-  },
-  {
-    num: 2,
-    question: 'What does CSS stand for?',
-    answer: 'Cascading Style Sheet',
-    options: [
-      'Cascading Style Sheet',
-      'Common Style Sheet',
-      'Color Style Sheet',
-      'Computer Style Sheet'
-    ]
-  },
-  {
-    num: 3,
-    question: 'What does FGO stand for?',
-    answer: 'Fate Grand Order',
-    options: [
-      'Fate Great Order',
-      'Fate Good Order',
-      'Fate God Order',
-      'Fate Grand Order'
-    ]
+let timer = 60
+let queCount = 0
+let queNum = 1
+let score = 0
+let counter
+let widthValue = 0
+
+const showQue = index => {
+  const quizQue = document.getElementById('quizQue')
+
+  let queTag = '<span>' + questions[index].num + '. ' + questions[index].question + '</span>'
+
+  let optionTag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>'
+    + '<div class="option"><span>' + questions[index].options[1] + '</span></div>'
+    + '<div class="option"><span>' + questions[index].options[2] + '</span></div>'
+    + '<div class="option"><span>' + questions[index].options[3] + '</span></div>'
+
+  quizQue.innerHTML = queTag
+  quizOpt.innerHTML = optionTag
+
+  const option = quizOpt.querySelectorAll('.option')
+
+  for (let i = 0; i < option.length; i++) {
+    option[i].setAttribute('onclick', 'optionSelected(this)')
   }
-]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// When record score btn is clicked
+document.getElementById('recordScoreBtn').addEventListener('click', event => {
+  event.target.parentNode.parentNode.remove()
+
+  const recordBox = document.getElementById('recordBox')
+  recordBox.className = 'recordBox showRecordForm'
+})
+
+// When retake quiz btn is clicked
+document.getElementById('retakeBtn').addEventListener('click', event => {
+  window.location.reload()
+})
+
+// When submit btn is clicked (not done)
+document.getElementById('submitBtn').addEventListener('click', event => {
+  event.preventDefault()
+
+  let userScore = document.getElementById('submitBtn').value
+})
+
+
