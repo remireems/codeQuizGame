@@ -13,7 +13,7 @@ body {
   background: #90E0EF;
 }
 
-.startBtnBox, .rulesBox, .quizBox, .resultBox, .recordBox, .highscoresBox {
+.startBtnBox, .rulesBox, .quizBox, .recordBox, .highscoresBox {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -24,7 +24,7 @@ body {
   font-size: 2rem;
 }
 
-.rulesBox, .quizBox {
+.rulesBox, .quizBox, .resultBox, .recordBox, .highscoresBox {
   width: 550px;
   background: white;
   border-radius: 5px;
@@ -39,7 +39,7 @@ body {
   text-align: center;
 }
 
-.buttons {
+.conBtn {
   display: flex;
   justify-content: center;
   padding: 0 0 10px 0;
@@ -49,7 +49,7 @@ span {
   font-weight: bold;
 }
 
-.rulesBox.showRules, .quizBox.showQuiz {
+.rulesBox.showRules, .quizBox.showQuiz, .resultBox.showResults, .recordBox.showRecordForm, .highscoresBox.showScores {
   opacity: 1;
   z-index: 5;
   pointer-events: auto;
@@ -179,7 +179,6 @@ section {
   pointer-events: none;
   transition: all 0.3s ease;
   line-height: 24px;
-
 }
 
 .quizOpt.option.icon.checkmark {
@@ -191,7 +190,7 @@ section {
 .quizOpt.option.icon.cross {
   color: #a42834;
   background: #f8d7da;
-  border-color: #a42834 ;
+  border-color: #a42834;
 }
 
 footer {
@@ -203,7 +202,7 @@ footer {
   border-top: 1px solid lightgrey;
 }
 
-.quizTotal span{
+.quizTotal span {
   display: flex;
   user-select: none;
 }
@@ -211,9 +210,86 @@ footer {
 .quizTotal span p {
   font-weight: 500;
   padding: 0 5px;
-
 }
 
 .quizTotal span p:first-child {
   padding-left: 0px;
 }
+
+.resultBox {
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  padding: 25px 30px;
+  width: 450px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* .resultBox .icon {
+  font-size: 100px;
+  color: #007bff;
+  margin-bottom: 10px;
+} */
+
+/* .resultBox .complete_text {
+  font-size: 20px;
+  font-weight: 500;
+} */
+
+.resultScore span {
+  display: flex;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.resultScore span p {
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.resultBtns {
+  display: flex;
+  margin: 20px 0;
+}
+
+.resultBtns button {
+  margin: 0 10px;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+  transition: all 0.3s ease;
+}
+
+#recordScoreBtn {
+  color: #007bff;
+  background: white;
+}
+
+#recordScoreBtn:hover {
+  color: white;
+  background: #007bff;
+}
+
+#retakeBtn {
+  color: white;
+  background: #007bff;
+}
+
+#retakeBtn:hover {
+  background: #0263ca;
+}
+
+
