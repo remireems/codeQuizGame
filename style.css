@@ -24,7 +24,7 @@ body {
   font-size: 2rem;
 }
 
-.rulesBox, .quizBox, .resultBox, .recordBox, .highscoresBox {
+.rulesBox, .quizBox, .recordBox, .highscoresBox {
   width: 550px;
   background: white;
   border-radius: 5px;

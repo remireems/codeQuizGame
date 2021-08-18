@@ -1,7 +1,7 @@
 const startBtn = document.getElementById('startBtn')
-
+const rulesBox = document.getElementById('rulesBox')
 const continueBtn = document.getElementById('continueBtn')
-
+const quizBox = document.getElementById('quizBox')
 const resultBox = document.getElementById('resultBox')
 const quizOpt = document.getElementById('quizOpt')
 const timerTime = document.getElementById('timerTime')
@@ -11,31 +11,32 @@ const timerSecs = document.getElementById('timerSecs')
 document.getElementById('startBtn').addEventListener('click', event => {
   event.target.parentNode.remove()
 
-  const rulesBox = document.getElementById('rulesBox')
+
   rulesBox.className = 'rulesBox showRules'
-})
-
-// When continue btn is clicked
-document.getElementById('continueBtn').addEventListener('click', event => {
-  event.target.parentNode.parentNode.remove()
-
-  const quizBox = document.getElementById('quizBox')
-  quizBox.className = 'quizBox showQuiz'
-
-  showQue(0)
-  // queCounter()
-  // startTimer()
 })
 
 let timer = 60
 let queCount = 0
 let queNum = 1
 let score = 0
-let counter
-let widthValue = 0
+
+// When continue btn is clicked
+document.getElementById('continueBtn').addEventListener('click', event => {
+  // event.target.parentNode.parentNode.remove()
+  rulesBox.className.remove = 'showRules'
+
+
+  quizBox.className = 'quizBox showQuiz'
+
+  showQue(0)
+  queCounter(1)
+  startTimer(timer)
+})
+
 
 const showQue = index => {
   const quizQue = document.getElementById('quizQue')
+
 
   let queTag = '<span>' + questions[index].num + '. ' + questions[index].question + '</span>'
 
@@ -46,15 +47,67 @@ const showQue = index => {
 
   quizQue.innerHTML = queTag
   quizOpt.innerHTML = optionTag
+  // quizOpt.className = 'quizOpt option'
 
-  const option = quizOpt.querySelectorAll('.option')
+  const option = quizOpt.querySelectorAll = 'quizOpt option'
 
   for (let i = 0; i < option.length; i++) {
-    option[i].setAttribute('onclick', 'optionSelected(this)')
+    option[i].setAttribute('click', optionSelected(this))
   }
 }
 
+let checkIconTag = '<div class="checkIcon"><i class="fas fa-check"></i></div>'
+let xIconTag = '<div class="xIcon"><i class="fas fa-times"></i></div>'
 
+const optionSelected = answer => {
+  let userAnswer = answer.textContent
+  let correctAnswer = questions[queCount].answer
+
+  const allOptions = quizOpt.children.length
+
+  if (userAnswer === correctAnswer) {
+    score++
+    answer.className = 'correct'
+    answer.insertAdjacentHTML('beforeend', checkIconTag)
+    console.log(`Correct answer! Your score is ${userScore}`)
+  } else {
+    timer -= 10
+    answer.className = 'incorrect'
+    answer.insertAdjacentHTML('beforeend', xIconTag)
+    console.log('Incorrect answer!')
+  }
+
+  for (let i = 0; i < allOptions.length; i++) {
+    if (queCount < questions.length - 1) {
+      queCount++
+      queNum++
+      showQue(queCount)
+      queCounter(queNum)
+    } else {
+      showResult()
+    }
+  }
+}
+
+const showResult = () => {
+  quizBox.className.remove = 'showQuiz'
+  resultBox.className = 'resultBox showResults'
+
+  let resultScore = document.getElementById('resultScore')
+  resultScore.innerHTML = `Your score is ${userScore} out of 5!`
+}
+
+const queCounter = index => {
+  let totalQueCountTag = '<span><p>' + index + '</p> of <p>' + questions.length + '</p> questions</span>'
+  bottom_ques_counter.innerHTML = totalQueCountTag;
+}
+
+const startTimer = timer => {
+  setInterval(() => {
+    timer--
+    document.getElementById('timerSecs').textContent = timer
+  }, 1000);
+}
 
 
 
