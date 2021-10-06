@@ -49,10 +49,15 @@ const showQue = index => {
   quizOpt.innerHTML = optionTag
   // quizOpt.className = 'quizOpt option'
 
-  const option = quizOpt.querySelectorAll = 'quizOpt option'
+  // const option = quizOpt.className = 'quizOpt option'
+
+  const option = quizOpt.getElementsByClassName('option')
+
+  console.log(option)
+
 
   for (let i = 0; i < option.length; i++) {
-    option[i].setAttribute('click', optionSelected(this))
+    option[i].setAttribute('onclick', 'optionSelected(this)')
   }
 }
 
@@ -67,26 +72,30 @@ const optionSelected = answer => {
 
   if (userAnswer === correctAnswer) {
     score++
-    answer.className = 'correct'
+    answer.className = 'option correct'
     answer.insertAdjacentHTML('beforeend', checkIconTag)
-    console.log(`Correct answer! Your score is ${userScore}`)
+    console.log(`Correct answer! Your score is ${score}`)
   } else {
-    timer -= 10
-    answer.className = 'incorrect'
+    timer = timer - 10
+    answer.className = 'option incorrect'
     answer.insertAdjacentHTML('beforeend', xIconTag)
     console.log('Incorrect answer!')
   }
 
-  for (let i = 0; i < allOptions.length; i++) {
-    if (queCount < questions.length - 1) {
-      queCount++
-      queNum++
-      showQue(queCount)
-      queCounter(queNum)
-    } else {
-      showResult()
-    }
+  for (let i = 0; i < allOptions; i++) {
+    quizOpt.children[i].className = 'option disabled'
   }
+
+  // for (let i = 0; i < allOptions.length; i++) {
+  //   if (queCount < questions.length - 1) {
+  //     queCount++
+  //     queNum++
+  //     showQue(queCount)
+  //     queCounter(queNum)
+  //   } else {
+  //     showResult()
+  //   }
+  // }
 }
 
 const showResult = () => {
@@ -94,31 +103,27 @@ const showResult = () => {
   resultBox.className = 'resultBox showResults'
 
   let resultScore = document.getElementById('resultScore')
-  resultScore.innerHTML = `Your score is ${userScore} out of 5!`
+  resultScore.innerHTML = `Your score is ${score} out of 5!`
 }
+
+const quizTotal = document.getElementById('quizTotal')
 
 const queCounter = index => {
   let totalQueCountTag = '<span><p>' + index + '</p> of <p>' + questions.length + '</p> questions</span>'
-  bottom_ques_counter.innerHTML = totalQueCountTag;
+  quizTotal.innerHTML = totalQueCountTag;
 }
 
 const startTimer = timer => {
   setInterval(() => {
-    timer--
-    document.getElementById('timerSecs').textContent = timer
+    if (timer === 0) {
+      clearInterval(timer)
+      showResult()
+    } else {
+      timer--
+      document.getElementById('timerSecs').textContent = timer
+    }
   }, 1000);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // When record score btn is clicked
 document.getElementById('recordScoreBtn').addEventListener('click', event => {
